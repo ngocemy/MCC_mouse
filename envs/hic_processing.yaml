@@ -1,0 +1,30 @@
+name: hic_processing
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - su
+  - r
+dependencies:
+   - requests
+   - pip
+   - numpy
+   - pandas
+   - cython
+   - bowtie2
+   - minimap2
+   - samtools
+   - pysam
+   - seqkit
+   - hint=2.1.9
+   - pairix
+   - pairtools
+   - chromosight
+   - pip:
+     - "--editable=git+https://github.com/mirnylab/cooltools.git@master#egg=cooltools-master"
+     - "--editable=git+https://github.com/mirnylab/cooler.git@master#egg=cooler-master"
+     - "--editable=git+https://github.com/koszullab/hicstuff.git@master#egg=hicstuff-master"
+     - "--editable=git+https://github.com/mirnylab/bioframe.git@master#egg=bioframe-master"
+     - "--editable=git+https://github.com/Phlya/coolpuppy.git@master#egg=coolpuppy-master"
+prefix: /home/cmatthey/anaconda3/envs/hic_processing
+

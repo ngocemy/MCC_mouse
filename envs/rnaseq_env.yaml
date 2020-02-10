@@ -1,0 +1,41 @@
+name: rnaseq
+channels:
+  - anaconda
+  - conda-forge
+  - bioconda
+  - defaults
+  - r
+dependencies:
+  - bedtools
+  - bioconductor-apeglm
+  - bioconductor-biobase
+  - bioconductor-biocgenerics
+  - bioconductor-biocparallel
+  - bioconductor-biomart
+  - bioconductor-deseq2
+  - bioconductor-limma
+  - bioconductor-ensdb.hsapiens.v86
+  - bioconductor-ensembldb
+  - bioconductor-genomicranges
+  - bioconductor-tximport
+  - hisat2
+  - perl
+  - pip
+  - python=2.7.15
+  - r-base=3.5.1
+  - r-dplyr
+  - r-factoextra
+  - r-factominer
+  - r-forcats
+  - r-ggplot2
+  - r-ggpubr
+  - r-ggrepel
+  - r-gridextra
+  - r-pheatmap
+  - r-reshape2
+  - r-tidyverse
+  - r-viridis
+  - salmon
+  - samtools
+prefix: /home/cmatthey/anaconda3/envs/rnaseq
+
