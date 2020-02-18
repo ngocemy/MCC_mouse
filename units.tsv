@@ -1,0 +1,8 @@
+name	lib_type	replicate	fq1	fq2
+AT409	HiC	1	data/input/fq/AT409merged_R1.fastq.gz	data/input/fq/AT409merged_R2.fastq.gz
+AT410	HiC	1	data/input/fq/AT410merged_R1.fastq.gz	data/input/fq/AT410merged_R2.fastq.gz
+#AT411	HiC	1	data/input/fq/AT411_S7_R1_001.fastq.gz	data/input/fq/AT411_S7_R2_001.fastq.gz
+#AT412	HiC	1	data/input/fq/AT412_S7_R1_001.fastq.gz	data/input/fq/AT412_S7_R2_001.fastq.gz
+AT415	HiC	1	data/input/fq/AT415_S4_R1_001.fastq.gz	data/input/fq/AT415_S4_R2_001.fastq.gz
+AT416	HiC	1	data/input/fq/AT416_S6_R1_001.fastq.gz	data/input/fq/AT416_S6_R2_001.fastq.gz
+AT417	HiC	1	data/input/fq/AT417_S8_R1_001.fastq.gz	data/input/fq/AT417_S8_R2_001.fastq.gz

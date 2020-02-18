@@ -1,0 +1,7 @@
+samples : "samples.tsv"
+units : 'units.tsv'
+reference: 'data/input/fa/mm10.fa'
+low_res : 200000
+high_res : 10000
+
+region :  "chr1:5500000-5800000"
