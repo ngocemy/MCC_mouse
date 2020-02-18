@@ -24,7 +24,6 @@ snakemake -j 8 --use-conda
 
 The workflow will run independently for each library, each run starting from the genome and a pairs file:
 
-*toputthefighere*
 ### Output files
 
 Different 1D signals are computed from the pairs file:
