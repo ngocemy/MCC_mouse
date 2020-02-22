@@ -13,7 +13,7 @@ for sample in df["name"]:
     c = cooler.Cooler(
         join(
             snakemake.params["out"],
-            "cool",
+            "mcool",
             sample + f"_normalized.mcool::/resolutions/{res}",
         )
     )
