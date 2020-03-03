@@ -60,6 +60,6 @@ rule saddle_plot:
     import matplotlib
     matplotlib.use('Agg')
     eig = pd.read_csv(
-        input['eig'], sep="\t", names=["chrom", "start", "end", "E1"], header=None
+        input['eig'], sep="\t", names=["chrom", "start", "end", "E1",'E2'], header=None
     )
     saddle_plot(eig, input['cool'],  out=output[0])
