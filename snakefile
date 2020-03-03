@@ -1,7 +1,7 @@
 #!/bin/env snakemake -s
 # This file can be run using snakemake. It runs all different HBV cancer 
 # analyses on the input pairs files
-# cmdoret, 20190501
+
 
 from snakemake.utils import validate
 from os.path import join
@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 import sys
 from glob import glob
-
+import itertools as it 
 def bp_to_suffix(size):
     """
     Given a number of basepairs, returns the notation with suffix
@@ -66,20 +66,14 @@ wildcard_constraints:
   sample="|".join(samples['name'])
   #chrom="|".join(chrID)
 
-#breakpoint()
-include : 'rules/hic_matrix_processing.smk'
 #include : 'rules/plot_distance.smk'
-#include : 'rules/filter_uncut_loop.smk'
+
+include: 'rules/hic_matrix_processing.smk'
+include: 'rules/filter_uncut_loop.smk'
 include: 'rules/compartment_analysis.smk'
-include: 'scripts/compartment_utils.py'
+include: 'scripts/plot_eig_compartment.py'
+include: 'rules/hicreppy.smk'
 rule all:
-  input:  
-    #expand(join(OUT, 'cool', '{sample}_{libtype}_' + f'{COMP_RES_STR}.cool'),sample=samples['name'],libtype=units['lib_type'])  
-    #expand(join(OUT, 'distance_law', '{sample}'+'_plot_distance_from_pairs.txt'),sample=samples['name'])
-    #expand(join(TMP, 'hicstuff', '{sample}'),sample=samples['name']),
-    #expand(join(TMP, 'hicstuff', '{sample}','.'.join(['{sample}','cool'])),sample=samples['name'])
-    join(OUT,'plots', f'hic_plot_all_samples_{high_res}_{REGION}.svg'),
-    #expand(join(OUT,'filter','plots','{sample}'),sample=samples['name'])
-    #expand(join(OUT, 'distance_law', 'plots','all_samples_{chrom}_plot_distance_from_pairs.pdf'),chrom=chrID)
-    #expand(join(OUT, 'compartments', 'compartments_{sample}_{libtype}.bedgraph'),sample=samples['name'],libtype=units['lib_type']),
-    expand(join(OUT, 'figures', 'compartments', 'eigens', '{chrom}_eigen.svg'),chrom=chrID)
+  input: expand(join(OUT, 'figures', 'compartments', 'saddle', '{sample}_saddle_plot.svg'),sample=samples['name'])
+
+#expand(join(OUT, 'compartments', 'compartments_{sample}_{libtype}.bedgraph'),sample=samples['name'],libtype=units['lib_type'])

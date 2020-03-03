@@ -48,3 +48,18 @@ rule plot_eigenvectors:
 #     matplotlib.use('Agg')
 #     comp_df = pd.read_csv(input[0], sep='\t')
 #     pca_compartments(comp_df, params['samples_df'], col_var=wildcards['variable'], out=output[0])
+
+
+rule saddle_plot:
+  input: 
+    eig = join(OUT, 'compartments', 'compartments_{sample}_HiC.bedgraph'),
+    cool = join(OUT,'cool','{sample}_HiC_100kb.cool')
+  output: join(OUT, 'figures', 'compartments', 'saddle', '{sample}_saddle_plot.svg')
+  
+  run:
+    import matplotlib
+    matplotlib.use('Agg')
+    eig = pd.read_csv(
+        input['eig'], sep="\t", names=["chrom", "start", "end", "E1"], header=None
+    )
+    saddle_plot(eig, input['cool'],  out=output[0])
