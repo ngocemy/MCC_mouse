@@ -44,7 +44,7 @@ configfile: "config.yaml"
 
 samples = pd.read_csv(config["samples"], sep='\t', dtype=str, comment='#')
 #validate(samples, schema="schemas/samples.schema.yaml")
-
+sample_gibcus = pd.read_csv(config["sample_gibcus"], sep='\t', dtype=str, comment='#')
 units = pd.read_csv(config["units"], sep='\t', dtype=str, comment='#')
 # Enforce str in index
 #units.index = units.index.set_levels([i.astype(str) for i in units.index.levels])
@@ -55,8 +55,10 @@ IN = join(DATA_DIR, 'input')
 OUT = join(DATA_DIR, 'output')
 TMP = join(DATA_DIR, 'tmp')
 GENOME = config['reference']
-high_res = config['high_res']
-low_res = config['low_res']
+HIGH_RES = config['high_res']
+HIGH_RES_STR = bp_to_suffix(HIGH_RES)
+LOW_RES = config['low_res']
+LOW_RES_STR = bp_to_suffix(LOW_RES)
 REGION = config['region']
 chrID = ["chr{}".format(x) for x in list(range(1, 19)) + ["X"]]
 COMP_RES = config['contact_maps']['comp_res']
@@ -73,7 +75,11 @@ include: 'rules/filter_uncut_loop.smk'
 include: 'rules/compartment_analysis.smk'
 include: 'scripts/plot_eig_compartment.py'
 include: 'rules/hicreppy.smk'
-rule all:
-  input: expand(join(OUT, 'figures', 'compartments', 'saddle', '{sample}_saddle_plot.svg'),sample=samples['name'])
+include: 'scripts/matrix_utils.py'
+include: 'rules/gibcus.smk'
 
-#expand(join(OUT, 'compartments', 'compartments_{sample}_{libtype}.bedgraph'),sample=samples['name'],libtype=units['lib_type'])
+rule all:
+  #input: expand(join(OUT, 'plots', 'all_chr','hic_plot_all_chrom_{sample}_' + f'{LOW_RES_STR}.svg'),sample=samples['name']),
+  input: 
+    expand(join(OUT,'gibcus2018', 'chromosight','quantify','{filename}'),filename = sample_gibcus['filename']),
+    expand(join(OUT,'gibcus2018', 'chromosight','{filename}'),filename = sample_gibcus['filename'])
