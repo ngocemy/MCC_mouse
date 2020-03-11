@@ -1,5 +1,5 @@
 sample	condition	timepoint	strand	resolution filetype
-GSM2745839	WTiii		R1	10000	cool
+GSM2745839	WT		R1	10000	cool
 GSM2745840	WT		R1	10000	cool
 GSM2745841	WT		R2	10000	cool
 GSM2745842	WT	10m	R1	10000	cool
